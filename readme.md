@@ -167,3 +167,11 @@ cd ~/localfed/apps/experiments/
 ```
 python3 httpd.py client ip:port
 ```
+Open new terminal and access the federated server
+```
+gnome-terminal
+```
+nano ~/localfed/apps/experiments/joinning.txt
+```
+`Add client03 to the list and you will se in the terminal of the runing federated learning server that client03 is now in the training process, also you will see in the terminal of client03 the communication messages`
+
