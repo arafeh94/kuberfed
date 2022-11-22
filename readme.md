@@ -120,6 +120,7 @@ Preparing client01
 ```
 cd ~/localfed/apps/experiments/
 ```
+Specifying the port that the client will use to communication with the server
 ```
 python3 httpd.py client ip:port
 ```
