@@ -37,7 +37,7 @@ sudo apt-mark hold kubeadm kubelet kubectl
 ```
 sudo hostnamectl set-hostname master-node
 ```
-## Start Kubernetes Deployement
+## Start Kubernetes Deployement (server side)
 ```
 sudo swapoff -a
 ```
