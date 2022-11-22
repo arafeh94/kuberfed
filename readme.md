@@ -114,7 +114,7 @@ gnome-terminal
 ```
 Accessing client01
 ```
-sudo kubectl exec -it client01 /bin/basg
+sudo kubectl exec -it client01 /bin/bash
 ```
 Preparing client01
 ```
@@ -141,4 +141,29 @@ nano joinning.txt
 Now Run the federated learning training process
 ```
 python3 httpd.py server ip:port ./joinning.txt
+```
+Now on the master-node terminal deploy client03
+```
+kubectl apply -f ~/Desktop/client03.ymal
+```
+Check if client03 is runing and the ipaddress
+```
+kubectl get pods
+```
+```
+kubectl get pod -o wide
+```
+Open new terminal
+```
+gnome-terminal
+```
+Now prepare client03 from the new terminal
+```
+sudo kubectl exec -it client03 /bin/bash
+```
+```
+cd ~/localfed/apps/experiments/
+```
+```
+python3 httpd.py client ip:port
 ```
