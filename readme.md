@@ -61,7 +61,7 @@ Checking the existing nodes in the cluster
 ```
 kubectl get nodes
 ```
-check the exiting pods
+Check the exiting pods
 ```
 kubectl get pods --all-namespaces
 ```
