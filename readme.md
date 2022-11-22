@@ -1,5 +1,5 @@
 ## Kubernetes and Localfed commands
-## Setup Kubernetes and Docker
+## Install Kubernetes and Docker
 
 1. Update the package list with the command:
 
