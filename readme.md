@@ -37,7 +37,7 @@ sudo apt-mark hold kubeadm kubelet kubectl
 ```
 sudo hostnamectl set-hostname master-node
 ```
-#Start Kubernetes Deployement
+## Start Kubernetes Deployement
 ```
 sudo swapoff -a
 ```
@@ -64,4 +64,43 @@ kubectl get nodes
 Check the exiting pods
 ```
 kubectl get pods --all-namespaces
+```
+Get the token needed to join the cluster
+```
+sudo kubeadm token create --print-join-command
+```
+###### ouput `kubeadm join 10.0.2.15:6443 --token sm1i4p.v57qcs7ppiav6y53 --discovery-token-ca-cert-hash sha256:402c7635040ea5b2dd5f73622c0b1bdedd96c09831463ce70dd7b2cdcf957eed`
+## Now on the Worker side
+1. First swapoff
+```
+sudo swapoff -a
+```
+2. Now Run the Joining key as root
+```
+sudo kubeadm join 10.0.2.15:6443 --token sm1i4p.v57qcs7ppiav6y53 --discovery-token-ca-cert-hash sha256:402c7635040ea5b2dd5f73622c0b1bdedd96c09831463ce70dd7b2cdcf957eed 
+```
+## GO BACK TO MASTER-NODE
+check if the worker appears in the cluster
+```
+kubectl get nodes
+```
+## Start to Deploy Clients
+First Check the .ymal files for deployment
+```
+kubectl apply -f ~/Desktop/server.ymal
+```
+```
+kubectl apply -f ~/Desktop/client01.ymal
+```
+```
+kubectl apply -f ~/Desktop/client02.ymal
+```
+Now check if all the pods are running normally
+```
+kubectl get pods
+```
+to get the ipaddress of each pod (client)
+```
+kubectl get pod -o wide
+
 ```
