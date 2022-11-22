@@ -1,12 +1,25 @@
 ## Kubernetes and Localfed commands
 ## Setup Kubernetes and Docker
 
-Install dependencies:
+1. Update the package list with the command:
 
 ```
-npm install
+sudo apt-get update
 ```
-
+2. Next, install Docker with the command:
+```
+sudo apt-get install docker.io
+```
+3. Set Docker to launch at boot by entering the following:
+```
+sudo systemctl enable docker
+```
+```
+sudo systemctl status docker
+```
+```
+sudo systemctl start docker
+```
 Compile scripts and styles:
 
 ```
