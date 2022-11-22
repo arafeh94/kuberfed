@@ -1,5 +1,5 @@
 ## Kubernetes and Localfed commands
-## Setup
+## Setup Kubernetes
 
 Install dependencies:
 
