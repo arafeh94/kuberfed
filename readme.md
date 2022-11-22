@@ -57,4 +57,11 @@ Deploy Pod Network to Cluster
 ```
 sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
-
+Checking the existing nodes in the cluster
+```
+kubectl get nodes
+```
+check the exiting pods
+```
+kubectl get pods --all-namespaces
+```
