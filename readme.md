@@ -80,18 +80,22 @@ sudo swapoff -a
 sudo kubeadm join 10.0.2.15:6443 --token sm1i4p.v57qcs7ppiav6y53 --discovery-token-ca-cert-hash sha256:402c7635040ea5b2dd5f73622c0b1bdedd96c09831463ce70dd7b2cdcf957eed 
 ```
 ## GO BACK TO MASTER-NODE
-check if the worker appears in the cluster
+Check if the worker appears in the cluster
 ```
 kubectl get nodes
 ```
 ## Start to Deploy Clients
 First Check the .ymal files for deployment
+
+`This one represents the federated server aggregator that take place on the master-node machine along with the kubernetes`
 ```
 kubectl apply -f ~/Desktop/server.ymal
 ```
+`client01 deployment`
 ```
 kubectl apply -f ~/Desktop/client01.ymal
 ```
+`client02 deployment`
 ```
 kubectl apply -f ~/Desktop/client02.ymal
 ```
@@ -99,8 +103,42 @@ Now check if all the pods are running normally
 ```
 kubectl get pods
 ```
-to get the ipaddress of each pod (client)
+To get the ipaddress of each pod (client)
 ```
 kubectl get pod -o wide
-
+```
+## Now moving to the Federated learning part
+Open new terminal
+```
+gnome-terminal
+```
+Accessing client01
+```
+sudo kubectl exec -it client01 /bin/basg
+```
+Preparing client01
+```
+cd ~/localfed/apps/experiments/
+```
+```
+python3 httpd.py client ip:port
+```
+`Now apply the previous process to all the clients at the end you should get an open terminal for each client`
+Open new terminal `this time we will access the federated learning server (aggregator)
+```
+gnome-terminal
+```
+```
+sudo kubectl exec -it server /bin/bash
+```
+```
+cd ~/localfed/apps/experiments/
+```
+Now update the joining file that represent the client that will join the federated learning training round by adding `#client,ipaddress:port`
+```
+nano joinning.txt
+```
+Now Run the federated learning training process
+```
+python3 httpd.py server ip:port ./joinning.txt
 ```
