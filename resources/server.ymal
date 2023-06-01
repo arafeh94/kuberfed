@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: server
+spec:
+  nodeName: master-node
+  containers:
+  - name: fed
+    image: arafeh94/localfed
+    imagePullPolicy: IfNotPresent
