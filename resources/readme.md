@@ -120,7 +120,61 @@ Preparing client01
 ```
 cd ~/localfed/apps/experiments/
 ```
-Execute the experiments. Replace with relevant IPs
+Specifying the port that the client will use to communication with the server
 ```
-mpirun -np 3 -host 127.0.0.1,10.244.1.2,10.244.1.2 python3 distributed_averaging.py
+python3 httpd.py client ip:port
 ```
+`Now apply the previous process to all the clients at the end you should get an open terminal for each client`
+Open new terminal `this time we will access the federated learning server (aggregator)
+```
+gnome-terminal
+```
+```
+sudo kubectl exec -it server /bin/bash
+```
+```
+cd ~/localfed/apps/experiments/
+```
+Now update the joining file that represent the client that will join the federated learning training round by adding `#client,ipaddress:port`
+```
+nano joinning.txt
+```
+Now Run the federated learning training process
+```
+python3 httpd.py server ip:port ./joinning.txt
+```
+Now on the master-node terminal deploy client03
+```
+kubectl apply -f ~/Desktop/client03.ymal
+```
+Check if client03 is runing and the ipaddress
+```
+kubectl get pods
+```
+```
+kubectl get pod -o wide
+```
+Open new terminal
+```
+gnome-terminal
+```
+Now prepare client03 from the new terminal
+```
+sudo kubectl exec -it client03 /bin/bash
+```
+```
+cd ~/localfed/apps/experiments/
+```
+```
+python3 httpd.py client ip:port
+```
+Open new terminal and access the federated server
+```
+gnome-terminal
+```
+```
+nano ~/localfed/apps/experiments/joinning.txt
+```
+
+`Add client03 to the list and you will se in the terminal of the runing federated learning server that client03 is now in the training process, also you will see in the terminal of client03 the communication messages`
+
